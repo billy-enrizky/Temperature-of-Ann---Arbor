@@ -14679,8 +14679,8 @@ IPython.OutputArea.prototype._should_scroll = function(lines) {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Assignment-2">Assignment 2<a class="anchor-link" href="#Assignment-2">&#182;</a></h1><p>Before working on this assignment please read these instructions fully. In the submission area, you will notice that you can click the link to <strong>Preview the Grading</strong> for each step of the assignment. This is the criteria that will be used for peer grading. Please familiarize yourself with the criteria before beginning the assignment.</p>
-<p>The data for this assignment comes from a subset of The National Centers for Environmental Information (NCEI) <a href="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily">Global Historical Climatology Network daily (GHCNd)</a> (GHCN-Daily). The GHCN-Daily is comprised of daily climate records from thousands of land surface stations across the globe - it's a wonderfully large dataset to play with! In particular, you will be asked to use data from the Ann Arbor Michigan location (my home!). and this is stored in the file: <code>assets/fb441e62df2d58994928907a91895ec62c2c42e6cd075c2700843b89.csv</code></p>
+<h1 id="Assignment-2">Assignment 2<a class="anchor-link" href="#Assignment-2">&#182;</a></h1>
+<p>The data comes from a subset of The National Centers for Environmental Information (NCEI) <a href="https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily">Global Historical Climatology Network daily (GHCNd)</a> (GHCN-Daily). The GHCN-Daily is comprised of daily climate records from thousands of land surface stations across the globe - it's a wonderfully large dataset to play with! In particular, I use data from the Ann Arbor Michigan location (my home!). and this is stored in the file: <code>assets/fb441e62df2d58994928907a91895ec62c2c42e6cd075c2700843b89.csv</code></p>
 <p>Each row in this datafile corresponds to a single observation from a weather station, and has the following variables:</p>
 <ul>
 <li><strong>id</strong> : station identification code</li>
@@ -14692,16 +14692,14 @@ IPython.OutputArea.prototype._should_scroll = function(lines) {
 </li>
 <li><strong>value</strong> : data value for element (tenths of degrees C)</li>
 </ul>
-<p>For this assignment, you must:</p>
+<p>For this project I did:</p>
 <ol>
-<li>Read the documentation and familiarize yourself with the dataset, then write a python notebook which plots line graphs of the record high and record low temperatures by day of the year over the period 2005-2014. The area between the record high and record low temperatures for each day should be shaded.</li>
+<li>Read the documentation and familiarize myself with the dataset, then write a python notebook which plots line graphs of the record high and record low temperatures by day of the year over the period 2005-2014. The area between the record high and record low temperatures for each day should be shaded.</li>
 <li>Overlay a scatter of the 2015 data for any points (highs and lows) for which the ten year record (2005-2014) record high or record low was broken in 2015. (Based on the graph, do you think extreme weather is getting more frequent in 2015?)</li>
 <li>Watch out for leap days (i.e. February 29th), it is reasonable to remove these points from the dataset for the purpose of this visualization.</li>
-<li>Make the visual nice! Leverage principles from the first module in this course when developing your solution. Consider issues such as legends, labels, and chart junk.</li>
+<li>Make the visual nice. Consider issues such as legends, labels, and chart junk.</li>
 </ol>
-<p>I've written some steps I think would be good to go through, but there are other ways to solve this assignment so feel free to explore the pandas library! What I really want to see is an image that looks like this sketch I drew at my desk:</p>
-<p><img src="assets/chris_sketch.png" alt="" /></p>
-
+	
 </div>
 </div>
 </div>
@@ -14982,7 +14980,6 @@ IPython.OutputArea.prototype._should_scroll = function(lines) {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Step-1">Step 1<a class="anchor-link" href="#Step-1">&#182;</a></h2><p>Load the dataset and transform the data into Celsius (refer to documentation) then extract all of the rows which have minimum or maximum temperatures.</p>
-<p><strong>hint: when I did this step I had two DataFrame objects, each with ~80,000 entries in it</strong></p>
 
 </div>
 </div>
@@ -15019,8 +15016,8 @@ IPython.OutputArea.prototype._should_scroll = function(lines) {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Step-2">Step 2<a class="anchor-link" href="#Step-2">&#182;</a></h2><p>In order to visualize the data we would plot the min and max data for each day of the year between the years 2005 and 2014 across all weather stations. But we also need to find out when the min or max temperature in 2015 falls below the min or rises above the max for the previous decade.</p>
-<p>If you did step 1 you have two Series objects with min and max times for the years 2005 through 2015. You can use Pandas <code>groupby</code> to create max and min temperature Series objects across all weather stations for each day of these years, and you can deal with the records for February 29 (the leap year) by dropping them.</p>
-<p><strong>hint: when I finished this step, I had two DataFrame objects, each with exactly 4015 observations in them</strong></p>
+<p>I used Pandas <code>groupby</code> to create max and min temperature List objects across all weather stations for each day of these years, and I dropped the records for February 29 (the leap year).</p>
+
 
 </div>
 </div>
@@ -15053,8 +15050,7 @@ IPython.OutputArea.prototype._should_scroll = function(lines) {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Step-3">Step 3<a class="anchor-link" href="#Step-3">&#182;</a></h2><p>Now that you have grouped the daily max and min temperatures for each day of the years 2005 through 2015, you can separate out the data for 2015. Then you can use the Pandas <code>groupby</code> function to find the max and min of the temperature data for each <strong>day of the year</strong> for the 2005-2014 data.</p>
-<p><strong>hint: at the end of this step I had two DataFrames, one of maximum and the other of minimum values, which each had 365 observations in them. I also had another pair of similar DataFrames but only for the year 2015.</strong></p>
+<h2 id="Step-3">Step 3<a class="anchor-link" href="#Step-3">&#182;</a></h2><p>Now that I have grouped the daily max and min temperatures for each day of the years 2005 through 2015, I can separate out the data for 2015. Then I can use the Pandas <code>groupby</code> function to find the max and min of the temperature data for each <strong>day of the year</strong> for the 2005-2014 data.</p>
 
 </div>
 </div>
@@ -15092,7 +15088,7 @@ IPython.OutputArea.prototype._should_scroll = function(lines) {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Step-4">Step 4<a class="anchor-link" href="#Step-4">&#182;</a></h2><p>Now it's time to plot! You need to explore matplotlib in order to plot line graphs of the min and max temperatures for the years 2005 through 2014 and to scatter plot <strong>only</strong> the daily 2015 temperatures that exceeded those values.</p>
+<h2 id="Step-4">Step 4<a class="anchor-link" href="#Step-4">&#182;</a></h2><p>Now it's time to plot! I need to explore matplotlib in order to plot line graphs of the min and max temperatures for the years 2005 through 2014 and to scatter plot <strong>only</strong> the daily 2015 temperatures that exceeded those values.</p>
 
 </div>
 </div>
